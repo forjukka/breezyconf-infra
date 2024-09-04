@@ -17,7 +17,7 @@ https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html
 
 Then run these commands:
 
-````
+```
 python3 -m venv .venv
 source .venv/bin/activate
 python3 -m pip install -r requirements.txt # install python module dependencies
