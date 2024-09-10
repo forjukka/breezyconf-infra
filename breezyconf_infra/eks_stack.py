@@ -28,13 +28,18 @@ class EksStack(Stack):
             default_capacity=0,
         )
 
-        self.cluster.add_nodegroup_capacity("breezyconf-ng",
-            instance_types=[ec2.InstanceType("t4g.large")],
-            ami_type=eks.NodegroupAmiType.AL2023_ARM_64_STANDARD, # Use Amazon Linux 2023
+        # OIDC provider should be created automatically for the EKS cluster. If not, uncomment the following.
+        #oidc_provider = eks.OpenIdConnectProvider(self, "OIDCProvider",
+        #    url=self.cluster.cluster_open_id_connect_issuer_url
+        #)
+
+        self.cluster.add_nodegroup_capacity("breezyconf-ng2",
+            instance_types=[ec2.InstanceType("t3.large")],
+            ami_type=eks.NodegroupAmiType.AL2023_X86_64_STANDARD, # Use Amazon Linux 2023
             max_size=6,
             min_size=3,
             desired_size=3,
-            nodegroup_name="breezyconf-ng"
+            nodegroup_name="breezyconf-ng2"
         )
 
         # IAM Identity Center role that you use to in this AWS account
@@ -52,7 +57,5 @@ class EksStack(Stack):
             image_scan_on_push=True,
             image_tag_mutability=ecr.TagMutability.IMMUTABLE
         )
-        user = iam.User(self, "GitHubActionUser") # for production use an IAM role
+        user = iam.User(self, "GitHubActionUser") # for production use GitHub OIDC provider
         repository.grant_push(user)
-
-
