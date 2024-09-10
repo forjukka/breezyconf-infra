@@ -1,8 +1,9 @@
 # AWS Infrastructure for BreezyConf presentation
 
-The purpose of this repo is to provision VPC and Amazon EKS cluster that can be used for application deployment.
-The reason for having this infrastructure in a separate repo is to decouple it from apps that typically
-see more rapid changes. Quite often there's also a separate DevOps team that manages infra and EKS clusters.
+The purpose of this repo is to provision VPC, Amazon EKS cluster, and application dependencies.
+The reason for having infrastructure in a separate repo is to decouple it from application code that typically
+sees more rapid changes and is built/tested independently. Also, at many companies there's a separate DevOps team 
+that manages cloud infra and EKS clusters.
 
 ## About AWS CDK
 
