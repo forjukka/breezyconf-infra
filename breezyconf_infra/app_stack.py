@@ -101,6 +101,7 @@ class AppStack(Stack):
                     origin=origins.LoadBalancerV2Origin(alb,protocol_policy=cloudfront.OriginProtocolPolicy.HTTP_ONLY), # switch to HTTPS in production
                     allowed_methods=cloudfront.AllowedMethods.ALLOW_ALL,
                     viewer_protocol_policy=cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+                    #cache_policy=cloudfront.CachePolicy.CACHING_DISABLED # uncomment to disable caching for dynamic content
                 )
             }
         )
